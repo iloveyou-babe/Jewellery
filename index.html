@@ -963,6 +963,228 @@
     font-size: 0.62rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em;
     font-family: 'Jost', sans-serif;
   }
+
+  /* ===================================================
+     MOBILE RESPONSIVE — Complete overhaul
+     ≤768px: phones | 769–1024px: tablets
+  =================================================== */
+
+
+  /* ----- HAMBURGER MENU ----- */
+  .nav-hamburger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 6px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--warm-gray); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 190;
+    background: rgba(12,10,6,0.97); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    flex-direction: column; padding: 1.2rem 0;
+    transform: translateY(-8px); opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    display: flex; transform: translateY(0); opacity: 1; pointer-events: all;
+  }
+  .mobile-menu a {
+    font-family: 'Jost', sans-serif; font-size: 0.85rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--warm-gray); text-decoration: none;
+    padding: 1rem 1.8rem; border-bottom: 1px solid rgba(201,168,76,0.06);
+    transition: color 0.2s, background 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.05); }
+  .mobile-menu-appt {
+    margin: 1rem 1.8rem 0.5rem;
+    padding: 13px; text-align: center;
+    background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08));
+    color: var(--gold-light); border: 1px solid rgba(201,168,76,0.4);
+    font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; border-radius: 4px; cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .nav-hamburger { display: flex; }
+  }
+
+  @media (max-width: 1024px) {
+    nav { padding: 0 2rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 3rem; }
+    .hero-text { padding: 4rem 3rem 4rem 4rem; }
+    .collections-grid { grid-template-columns: repeat(2,1fr); }
+    .products-grid { grid-template-columns: repeat(3,1fr); }
+    .why-grid { grid-template-columns: repeat(2,1fr); }
+    footer { padding: 4rem 3rem 2rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    /* ----- NAV ----- */
+    nav {
+      padding: 0 1.2rem;
+      height: 64px;
+    }
+    .nav-logo { font-size: 1.4rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-icons { gap: 0.6rem; }
+    .nav-search-wrap.open .nav-search-input { width: 130px; }
+
+    /* ----- HERO ----- */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding-top: 64px;
+    }
+    .hero-text {
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      order: 2;
+    }
+    .hero-eyebrow { justify-content: center; }
+    .hero-eyebrow::before { display: none; }
+    .hero-title { font-size: clamp(2rem,8vw,3rem); }
+    .hero-subtitle { font-size: 1rem; max-width: 100%; margin-left: auto; margin-right: auto; }
+    .hero-btns { justify-content: center; }
+    .hero-stats { justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; }
+    .hero-visual {
+      order: 1;
+      min-height: 55vw;
+      max-height: 70vw;
+    }
+    .hero-visual > #heroImgReal {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .float-tag { padding: 7px 10px; }
+    .float-tag .tag-label { font-size: 0.55rem; }
+    .float-tag .tag-val { font-size: 0.82rem; }
+
+    /* ----- METAL RATES ----- */
+    .rates-inner { padding: 1.8rem 1.2rem; }
+    .rates-cards { gap: 0.8rem; }
+    .rate-card { min-width: 0; flex: 1 1 calc(33% - 0.6rem); padding: 1rem 0.8rem; }
+    .rate-card-price { font-size: 1.2rem; }
+
+    /* ----- SECTIONS ----- */
+    section { padding: 3.5rem 1.2rem; }
+    .section-title { font-size: clamp(1.6rem,5vw,2.2rem); }
+
+    /* ----- COLLECTIONS ----- */
+    .collections-header { flex-direction: column; gap: 1.2rem; align-items: flex-start; margin-bottom: 2rem; }
+    .collections-grid { grid-template-columns: repeat(2,1fr); gap: 0.9rem; }
+
+    /* ----- FEATURED ----- */
+    .featured { padding: 3.5rem 1.2rem; }
+    .featured-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .featured-visual { order: 1; }
+    .featured-info { order: 2; }
+    .featured-tag-float { right: 0; top: 1rem; }
+    .featured-specs { grid-template-columns: 1fr 1fr; }
+    .featured-actions { flex-direction: column; }
+    .featured-actions a { text-align: center; }
+    .featured-accent { display: none; }
+    .featured-name { font-size: 1.4rem; }
+
+    /* ----- PRODUCTS ----- */
+    .products-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .products-tabs { gap: 0; overflow-x: auto; justify-content: flex-start; padding-bottom: 0; -webkit-overflow-scrolling: touch; }
+    .tab-btn { padding: 10px 1rem; white-space: nowrap; font-size: 0.7rem; }
+    .product-wish { opacity: 1; }
+
+    /* ----- BANNER (Custom Creation) ----- */
+    .banner {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .banner-content {
+      padding: 3rem 1.5rem;
+      order: 2;
+    }
+    .banner-content::after { display: none; }
+    .banner-visual {
+      order: 1;
+      min-height: 55vw;
+      max-height: 65vw;
+    }
+    .banner-visual > #bannerImgReal {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .banner-title { font-size: clamp(1.6rem,5vw,2.2rem); }
+
+    /* ----- WHY US ----- */
+    .why-grid { grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .why-card { padding: 1.8rem 1rem; }
+
+    /* ----- TESTIMONIALS ----- */
+    .testi-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+    /* ----- NEWSLETTER ----- */
+    .newsletter { padding: 3.5rem 1.5rem; }
+    .newsletter-form { flex-direction: column; max-width: 100%; }
+    .newsletter-form input {
+      border-right: 1px solid rgba(255,255,255,0.25);
+      border-bottom: none;
+      border-radius: 2px 2px 0 0;
+    }
+    .newsletter-form button { border-left: 1px solid rgba(201,168,76,0.5); border-top: none; border-radius: 0 0 2px 2px; }
+
+    /* ----- FOOTER ----- */
+    footer { padding: 3rem 1.5rem 2rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .footer-legal { justify-content: center; }
+
+    /* ----- WISHLIST DRAWER ----- */
+    .wish-drawer { width: 100%; right: -100%; }
+
+    /* ----- SEARCH MODAL ----- */
+    .search-modal { width: 95vw; }
+    .search-modal-overlay.active { padding-top: 80px; align-items: flex-start; }
+
+    /* ----- APPOINTMENT MODAL ----- */
+    .appt-body { padding: 1.5rem 1.2rem; }
+    .appt-header { padding: 1.5rem 1.2rem 1rem; }
+    .appt-footer { padding: 1rem 1.2rem; }
+    .appt-row { grid-template-columns: 1fr; }
+
+    /* ----- ADMIN ----- */
+    .admin-body { padding: 1.5rem 1.2rem; }
+    .admin-header { padding: 1rem 1.2rem; }
+    .admin-tabs { padding: 0 1.2rem; }
+    .admin-row { grid-template-columns: 1fr; }
+    .coll-admin-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 420px) {
+    .collections-grid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
+    .products-grid { grid-template-columns: repeat(2,1fr); gap: 0.7rem; }
+    .why-grid { grid-template-columns: 1fr; }
+    .rate-card { flex: 1 1 100%; }
+    .hero-stats { gap: 1.5rem; }
+    .stat-num { font-size: 1.3rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -1003,7 +1225,18 @@
     </button>
     <button class="nav-cta" onclick="openAppointmentModal()">Book Appointment</button>
   </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#collections" onclick="closeMobileMenu()">Collections</a>
+  <a href="#featured" onclick="closeMobileMenu()">New Arrivals</a>
+  <a href="#products" onclick="closeMobileMenu()">Shop</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <button class="mobile-menu-appt" onclick="closeMobileMenu();openAppointmentModal()">Book Appointment</button>
+</div>
 
 <!-- WISHLIST DRAWER -->
 <div class="wish-drawer-overlay" id="wishDrawerOverlay" onclick="closeWishlistDrawer()"></div>
@@ -3024,6 +3257,21 @@ window.renderAttendanceForDate = renderAttendanceForDate;
 window.renderStaffList = renderStaffList;
 window.renderCollAdminGrid = renderCollAdminGrid;
 window.loadCollectionImages = loadCollectionImages;
+
+// Mobile menu
+function toggleMobileMenu() {
+  const btn = document.getElementById('navHamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('navHamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
+
 </script>
 </body>
 </html>
